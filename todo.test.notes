@@ -1,0 +1,25 @@
+
+## Testovacie úlohy pre backend
+
+- [x] Otestovať ProductService:
+  - [x] Vytvorenie produktu (create)
+  - [x] Získanie všetkých produktov (findAll)
+  - [x] Získanie jedného produktu podľa ID (findOne)
+  - [x] Aktualizáciu produktu (update)
+  - [x] Odstránenie produktu (remove)
+  - [x] Správne spracovanie chýb (napr. neexistujúci produkt)
+
+- [x] Otestovať ProductController:
+  - [x] Správne odpovede na HTTP požiadavky (GET, POST, PATCH, DELETE)
+  - [x] Validáciu vstupov (nevalidné dáta vráti chybu)
+  - [x] Správne status kódy (201, 200, 404, 400...)
+
+- [x] E2E testy:
+  - [x] Celý tok: vytvorenie produktu → získanie → úprava → zmazanie
+  - [x] Ošetrenie neexistujúceho ID
+
+ - [x] POST s nevalidnými typmi (napr. price: "abc", stockQuantity: null)
+ - [x] PATCH s neexistujúcim ID a nevalidnými dátami
+ - [ ] GET všetkých produktov po zmazaní (očakávaj prázdne pole)
+ - [x] DELETE s neplatným ObjectId (očakávaj 400)
+ - [x] POST s nadbytočnými poliami (očakávaj 400 vďaka ValidationPipe)

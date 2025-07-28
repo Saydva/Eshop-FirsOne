@@ -1,0 +1,47 @@
+###
+POST http://localhost:5000/product
+Content-Type: application/json
+
+{
+  "name": "New Product",
+  "description": "This is a new product",
+  "price": 19.99,
+"stockQuantity": 100,
+ "categoryId": "Electronics"  
+}
+
+###
+GET http://localhost:5000/product
+Content-Type: application/json
+
+###
+GET http://localhost:5000/product/6884ad401e1d8be9e5ea4842
+Content-Type: application/json
+
+
+###
+PATCH  http://localhost:5000/product/6887355ac287307db00d0559
+Content-Type: application/json 
+
+{
+    "name": "Updated Product",
+    "description": "This is an updated product" 
+}
+
+###
+DELETE http://localhost:5000/product/6884adb3e7e217be24890fc3
+Content-Type: application/json
+
+
+////// test errors for invalid data
+###
+POST http://localhost:5000/product
+Content-Type: application/json
+
+{
+  "name": "dfgsdgsdfgsdfg",
+  "description": "This product has an invalid price",
+  "price": 56,
+  "stockQuantity": 50,
+  "categoryId": "Electronics"
+}

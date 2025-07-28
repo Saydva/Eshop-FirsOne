@@ -1,0 +1,40 @@
+[2025-07-26]
+Notes:
+
+Ideas:
+TODO:
+# Ďalšie kroky (hotové aj plánované):
+[√] 1. Inštalácia NestJS CLI
+[√] 2. Vytvorenie nového projektu
+[√] 3. Generovanie základných súčastí (controller, module, service)
+[√] 4. Pridanie podpory pre .env súbor
+[√] 5. Nastavenie ConfigModule v app.module.ts
+[√] 6. Použitie premenných z .env v main.ts
+[√] 7. Pridanie validácie vstupov (class-validator, class-transformer)
+[√] 8. Inštalácia ďalších npm balíčkov (@nestjs/mapped-types)
+[√] 9. Pripojenie MongoDB cez Mongoose
+[√] 10. Definovanie Mongoose schémy (Product)
+[√] 11. Registrácia schémy v module
+[√] 12. Implementovať ProductService s CRUD logikou
+[√] 13. Implementovať ProductController s CRUD endpointmi
+[√] 14. Pridať testy pre ProductService a ProductController
+    - Validácia vstupov implementovaná podľa best practices:
+      - ValidationPipe s voľbami whitelist, forbidNonWhitelisted, transform
+      - Komentáre ku všetkým ValidationPipe voľbám v kóde aj dokumentácii
+      - Try-catch bloky v controlleri pre správne mapovanie chýb (ValidationError, CastError)
+      - Testy pokrývajú aj edge cases (nevalidné typy, nadbytočné polia, neexistujúce ID)
+[>] 15. Pridať Swagger dokumentáciu (pripraviť základ, endpointy, popisy)
+
+[ ] 16. Pridať autentifikáciu/autorizáciu (JWT)
+    - Vygenerovať Auth modul, service a controller
+    - Implementovať registráciu používateľa (hashovanie hesla, validácia vstupov)
+    - Implementovať login (overenie hesla, generovanie access/refresh tokenov)
+    - Pridať JWT stratégiu a guardy (napr. pomocou @nestjs/jwt a Passport JWT)
+    - Pridať endpoint na refresh token
+    - Chrániť endpointy pomocou AuthGuard('jwt')
+    - Pridať základné testy pre autentifikáciu
+
+testing
+Activity Log:
+
+2025-07-27: Dokončené pokrytie CRUD a chybových stavov v e2e testoch, controller správne mapuje Mongoose chyby na HTTP odpovede. Validácia vstupov je robustná a zdokumentovaná podľa best practices. Pripravené na ďalšie kroky: Swagger, autentifikácia.
