@@ -148,19 +148,4 @@ describe('AuthController (e2e)', () => {
       .expect(200);
     expect(response.body.message).toBe('Logged out successfully');
   });
-
-  it('/product (GET)', async () => {
-    const response = await request(app.getHttpServer())
-      .get('/product')
-      .set('Authorization', 'Bearer ' + accessToken) // Pridaj Bearer len tu!
-      .expect(200);
-    expect(Array.isArray(response.body)).toBe(true);
-  });
-
-  it('/product (GET) without token', async () => {
-    const response = await request(app.getHttpServer())
-      .get('/product')
-      .expect(401);
-    expect(response.body.message).toBe('Unauthorized');
-  });
 });

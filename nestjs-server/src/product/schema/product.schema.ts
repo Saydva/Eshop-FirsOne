@@ -1,6 +1,5 @@
 import { Document } from 'mongoose';
-import { Schema } from '@nestjs/mongoose';
-import { Prop, SchemaFactory } from '@nestjs/mongoose';
+import { Schema, Prop, SchemaFactory } from '@nestjs/mongoose';
 
 @Schema()
 export class Product extends Document {

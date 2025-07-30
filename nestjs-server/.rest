@@ -56,10 +56,10 @@ POST http://localhost:5000/auth/register
 Content-Type: application/json
 
 {
-  "email": "12test@gmail.com",
-  "password": "Test12312",
-  "name": "Test User12",
-  "role": "admin" // Optional, defaults to 'user'   
+  "email": "admin@gmail.com",
+  "password": "Admin12312",
+  "name": "Admin User",
+  "role": "admin"   
 }
 
 

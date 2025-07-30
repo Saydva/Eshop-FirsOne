@@ -1,50 +1,69 @@
-## Testovacie úlohy pre backend
+## Testovacie úlohy pre ProductService
 
-- [x] Otestovať ProductService:
-  - [x] Vytvorenie produktu (create)
-  - [x] Získanie všetkých produktov (findAll)
-  - [x] Získanie jedného produktu podľa ID (findOne)
-  - [x] Aktualizáciu produktu (update)
-  - [x] Odstránenie produktu (remove)
-  - [x] Správne spracovanie chýb (napr. neexistujúci produkt)
+- [x] should be defined – unitTest
+- [x] should return an array from findAll – unitTest
+- [x] should create a product – unitTest
+- [x] should find a product by id – unitTest
+- [x] should update a product – unitTest
+- [x] should delete a product – unitTest
 
-- [x] Otestovať ProductController:
-  - [x] Správne odpovede na HTTP požiadavky (GET, POST, PATCH, DELETE)
-  - [x] Validáciu vstupov (nevalidné dáta vráti chybu)
-  - [x] Správne status kódy (201, 200, 404, 400...)
+## Testovacie úlohy pre ProductController
 
-- [x] E2E testy:
-  - [x] Celý tok: vytvorenie produktu → získanie → úprava → zmazanie
-  - [x] Ošetrenie neexistujúceho ID
+- [x] should be defined – unitTest
+- [x] should return an array from findAll – unitTest
+- [x] should call service.create when create is called – unitTest
+- [x] should find a product by id – unitTest
+- [x] should update a product – unitTest
+- [x] should delete a product – unitTest
 
-- [x] POST s nevalidnými typmi (napr. price: "abc", stockQuantity: null)
-- [x] PATCH s neexistujúcim ID a nevalidnými dátami
-- [ ] GET všetkých produktov po zmazaní (očakávaj prázdne pole) -- //nebudem robit
-- [x] DELETE s neplatným ObjectId (očakávaj 400)
-- [x] POST s nadbytočnými poliami (očakávaj 400 vďaka ValidationPipe)
+## Testovacie úlohy pre CategoryController
 
-## Testovacie úlohy pre Auth (autentifikácia)
+- [x] should be defined – unitTest
+- [x] should create a category – unitTest
+- [x] should find all categories – unitTest
+- [x] should find a category by id – unitTest
+- [x] should update a category – unitTest
+- [x] should delete a category – unitTest
+- [x] should throw NotFoundException if category not found – unitTest
 
- [√] POST /auth/register – úspešná registrácia (201)
- [√] POST /auth/register – nevalidné dáta (400)
- [√] POST /auth/login – úspešné prihlásenie (201, accessToken, refreshToken)
- [√] POST /auth/login – zlý email/heslo (401)
- [√] GET /auth/user/:id – s platným JWT (200, user)
- [√] GET /auth/user/:id – bez tokenu (401)
- [√] POST /auth/logout/:id – odhlásenie (200)
- [√] POST /auth/refresh – platný refresh token (201, nový accessToken)
- [√] POST /auth/refresh – neplatný refresh token (401)
- Ochrana endpointov – bez tokenu (401), s tokenom
 
-## Ďalšie úlohy (todo)
+## Testovacie úlohy pre CategoryService
 
-- [ ] Refaktorovať testy pre lepšiu čitateľnosť a údržbu
-- [ ] Pridať komentáre k zložitejším testom a edge-case scenárom
-- [ ] Pridať test na expirovaný access token (401)
-- [ ] Overiť rotáciu refresh tokenu po úspešnom refreshi
-- [ ] Pridať test na rate limiting/brute force login (ak bude implementované)
-- [ ] Overiť správne CORS hlavičky a bezpečnostné nastavenia API
-- [ ] Otestovať neexistujúce endpointy (očakávaj 404)
-- [ ] Pridať beforeEach/afterEach na čistenie DB medzi testami (ak bude potrebné)
-- [ ] Pridať testy pre ďalšie moduly (napr. objednávky, kategórie)
-- [ ] Pridať CI/CD pipeline na automatické
+- [x] should be defined – unitTest
+- [x] should create a category – unitTest
+- [x] should find all categories – unitTest
+- [x] should find a category by id – unitTest
+- [x] should update a category – unitTest
+- [x] should delete a category – unitTest
+- [x] should throw NotFoundException if category not found – unitTest
+
+## Testovacie úlohy pre Auth (e2e)
+
+- [x] POST /auth/register – úspešná registrácia (201) – e2eTest
+- [x] POST /auth/register – nevalidné dáta (400) – e2eTest
+- [x] POST /auth/login – úspešné prihlásenie (201, accessToken, refreshToken) – e2eTest
+- [x] POST /auth/login – zlý email/heslo (401) – e2eTest
+- [x] GET /auth/user/:id – s platným JWT (200, user) – e2eTest
+- [x] GET /auth/user/:id – bez tokenu (401) – e2eTest
+- [x] POST /auth/logout/:id – odhlásenie (200) – e2eTest
+- [x] POST /auth/refresh – platný refresh token (201, nový accessToken) – e2eTest
+- [x] POST /auth/refresh – neplatný refresh token (401) – e2eTest
+- [x] Ochrana endpointov – bez tokenu (401), s tokenom – e2eTest
+
+## Doplnkové testy na zváženie
+
+- [x] Test GET /user – zoznam používateľov (admin, očakávaj pole používateľov) – e2eTest
+- [x] Test GET /user/:id – detail používateľa (admin, očakávaj používateľa) – e2eTest
+- [ ] Test PATCH /user/me – úprava profilu (očakávaj zmenené údaje)
+- [ ] Test DELETE /user/:id – zmazanie používateľa (admin, očakávaj správu)
+- [x] Test POST /category – vytvorenie kategórie (očakávaj kategóriu) – unitTest, e2eTest
+- [x] Test GET /category – zoznam kategórií (očakávaj pole kategórií) – unitTest, e2eTest
+- [x] Test PATCH /category/:id – úprava kategórie (očakávaj upravenú kategóriu) – unitTest
+- [x] Test DELETE /category/:id – zmazanie kategórie (očakávaj správu) – unitTest
+- [ ] Test POST /orders – vytvorenie objednávky (očakávaj objednávku)
+- [ ] Test GET /orders – zoznam objednávok (admin, očakávaj pole objednávok)
+- [ ] Test POST /payments – vytvorenie platby (očakávaj platbu)
+- [ ] Test GET /payments – zoznam platieb
+
+---
+**Všetky vyššie označené [x] testy

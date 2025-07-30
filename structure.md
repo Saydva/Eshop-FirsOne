@@ -9,7 +9,7 @@
   - POST `/auth/refresh` – refresh tokenu (vracia: accessToken, refreshToken)
   - GET `/auth/user/:userId` – detail používateľa (vracia: user)
 
-[ ] - **/user**
+[√] - **/user**
   - GET `/user/me` – info o prihlásenom používateľovi (vracia: user)
   - PATCH `/user/me` – úprava profilu (vracia: user)
   - GET `/user` – zoznam používateľov (admin, vracia: users)
@@ -21,7 +21,7 @@
   - PATCH `/product/:id` – úprava produktu (vracia: product)
   - DELETE `/product/:id` – zmazanie produktu (vracia: message)
 
-- **/category**
+[√] - **/category**
   - GET `/category` – zoznam kategórií (vracia: [category])
   - POST `/category` – vytvorenie kategórie (vracia: category)
   - PATCH `/category/:id` – úprava kategórie (vracia: category)
