@@ -8,9 +8,9 @@ import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
-    ProductModule,
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({ isGlobal: true }),
     MongooseModule.forRoot(process.env.MONGO_URI || ''),
+    ProductModule,
     AuthModule,
   ],
   controllers: [AppController],

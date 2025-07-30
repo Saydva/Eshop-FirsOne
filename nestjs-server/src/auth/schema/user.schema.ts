@@ -11,6 +11,15 @@ export class User extends Document {
 
   @Prop({ required: true, unique: true })
   name: string;
+
+  @Prop({ default: null })
+  accessToken?: string;
+
+  @Prop({ default: null })
+  refreshToken?: string;
+
+  @Prop({ default: 'user' })
+  role: string;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

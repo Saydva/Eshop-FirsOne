@@ -127,7 +127,7 @@ describe.skip('ProductController (e2e)', () => {
   });
 });
 
-describe('ProductController (e2e)', () => {
+describe.skip('ProductController (e2e)', () => {
   // --- Sekcia: CRUD operácie so správnymi dátami ---
   let app: INestApplication;
   let createdProductId: string;

@@ -3,7 +3,8 @@ Notes:
 
 Ideas:
 TODO:
-# Ďalšie kroky (hotové aj plánované):
+
+# Inštalácia a logika (hotové aj plánované):
 [√] 1. Inštalácia NestJS CLI
 [√] 2. Vytvorenie nového projektu
 [√] 3. Generovanie základných súčastí (controller, module, service)
@@ -17,22 +18,15 @@ TODO:
 [√] 11. Registrácia schémy v module
 [√] 12. Implementovať ProductService s CRUD logikou
 [√] 13. Implementovať ProductController s CRUD endpointmi
-[√] 14. Pridať testy pre ProductService a ProductController
-    - Validácia vstupov implementovaná podľa best practices:
-      - ValidationPipe s voľbami whitelist, forbidNonWhitelisted, transform
-      - Komentáre ku všetkým ValidationPipe voľbám v kóde aj dokumentácii
-      - Try-catch bloky v controlleri pre správne mapovanie chýb (ValidationError, CastError)
-      - Testy pokrývajú aj edge cases (nevalidné typy, nadbytočné polia, neexistujúce ID)
-[>] 15. Pridať Swagger dokumentáciu (pripraviť základ, endpointy, popisy)
+ [√] 14. Pridať Swagger dokumentáciu (pripraviť základ, endpointy, popisy)
 
-[ ] 16. Pridať autentifikáciu/autorizáciu (JWT)
+ [√] 15. Pridať autentifikáciu/autorizáciu (JWT)
     - Vygenerovať Auth modul, service a controller
     - Implementovať registráciu používateľa (hashovanie hesla, validácia vstupov)
     - Implementovať login (overenie hesla, generovanie access/refresh tokenov)
     - Pridať JWT stratégiu a guardy (napr. pomocou @nestjs/jwt a Passport JWT)
     - Pridať endpoint na refresh token
     - Chrániť endpointy pomocou AuthGuard('jwt')
-    - Pridať základné testy pre autentifikáciu
 
 testing
 Activity Log:

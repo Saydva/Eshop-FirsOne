@@ -1,6 +1,7 @@
 ###
 POST http://localhost:5000/product
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwic3ViIjoiNjg4ODlhNDllMGEwZjk0MWEwNzhiZDVkIiwibmFtZSI6IlRlc3QgVXNlciIsImlhdCI6MTc1Mzc4NTMzOSwiZXhwIjoxNzUzNzg2MjM5fQ.G_YkLvpAmYsumeA4uZVFpHCQSLXlCqsbUYCheFwiSP4
 
 {
   "name": "New Product",
@@ -13,6 +14,7 @@ Content-Type: application/json
 ###
 GET http://localhost:5000/product
 Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwic3ViIjoiNjg4ODlhNDllMGEwZjk0MWEwNzhiZDVkIiwibmFtZSI6IlRlc3QgVXNlciIsImlhdCI6MTc1Mzc4NTMzOSwiZXhwIjoxNzUzNzg2MjM5fQ.G_YkLvpAmYsumeA4uZVFpHCQSLXlCqsbUYCheFwiSP4
 
 ###
 GET http://localhost:5000/product/6884ad401e1d8be9e5ea4842
@@ -45,3 +47,65 @@ Content-Type: application/json
   "stockQuantity": 50,
   "categoryId": "Electronics"
 }
+
+
+////// test login and register
+
+###
+POST http://localhost:5000/auth/register
+Content-Type: application/json
+
+{
+  "email": "12test@gmail.com",
+  "password": "Test12312",
+  "name": "Test User12",
+  "role": "admin" // Optional, defaults to 'user'   
+}
+
+
+###
+POST http://localhost:5000/auth/login
+Content-Type: application/json
+
+{
+  "email": "test@gmail.com",
+  "password": "Test123"
+  }
+
+
+###
+POST http://localhost:5000/auth/refresh
+Content-Type: application/json
+
+{
+  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwic3ViIjoiNjg4N2MwNTI0NzJlMmM2YTM4OTNhNWMzIiwibmFtZSI6IlRlc3QgVXNlciIsImlhdCI6MTc1Mzc3NjcyMSwiZXhwIjoxNzUzODYzMTIxfQ.Id4SMZ9b_c4reqnAPKfKBkQ7VRxh-b108aIK-za1Cy4"
+}
+
+###
+POST http://localhost:5000/auth/logout/6887c052472e2c6a3893a5c3
+Content-Type: application/json
+
+/////// testing guard api
+
+###
+GET http://localhost:5000/auth/user/me
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwic3ViIjoiNjg4OWMxMGI3ZGExYWIxNDZkOGZmMGQxIiwibmFtZSI6IlRlc3QgVXNlciIsImlhdCI6MTc1Mzg1ODMzOCwiZXhwIjoxNzUzODU5MjM4fQ.yOZCODqGOG8qTHWOQSWghifDLLitpzLXPWl1vFpLk1U
+
+###
+PATCH http://localhost:5000/auth/user/update
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwic3ViIjoiNjg4OWMxMGI3ZGExYWIxNDZkOGZmMGQxIiwibmFtZSI6IlRlc3QgVXNlciIsImlhdCI6MTc1Mzg1ODMzOCwiZXhwIjoxNzUzODU5MjM4fQ.yOZCODqGOG8qTHWOQSWghifDLLitpzLXPWl1vFpLk1U
+
+{
+  "name": "Updated Test User"
+}
+
+
+###
+GET http://localhost:5000/auth/user/all
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwic3ViIjoiNjg4OWMxMGI3ZGExYWIxNDZkOGZmMGQxIiwibmFtZSI6IlVwZGF0ZWQgVGVzdCBVc2VyIiwiaWF0IjoxNzUzODYwNjA1LCJleHAiOjE3NTM4NjE1MDV9.rARP7yTEeTwJDwGRFjZUZbJpEwdbu-O2DcOanytOsrc
+
+
+

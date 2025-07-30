@@ -12,4 +12,7 @@ export class RegisterDto {
   @IsString()
   @IsNotEmpty()
   password: string;
+  @IsString()
+  @IsNotEmpty()
+  role: string = 'user'; // Default role is 'user'
 }

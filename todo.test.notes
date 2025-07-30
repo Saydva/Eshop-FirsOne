@@ -1,4 +1,3 @@
-
 ## Testovacie úlohy pre backend
 
 - [x] Otestovať ProductService:
@@ -18,8 +17,34 @@
   - [x] Celý tok: vytvorenie produktu → získanie → úprava → zmazanie
   - [x] Ošetrenie neexistujúceho ID
 
- - [x] POST s nevalidnými typmi (napr. price: "abc", stockQuantity: null)
- - [x] PATCH s neexistujúcim ID a nevalidnými dátami
- - [ ] GET všetkých produktov po zmazaní (očakávaj prázdne pole)
- - [x] DELETE s neplatným ObjectId (očakávaj 400)
- - [x] POST s nadbytočnými poliami (očakávaj 400 vďaka ValidationPipe)
+- [x] POST s nevalidnými typmi (napr. price: "abc", stockQuantity: null)
+- [x] PATCH s neexistujúcim ID a nevalidnými dátami
+- [ ] GET všetkých produktov po zmazaní (očakávaj prázdne pole) -- //nebudem robit
+- [x] DELETE s neplatným ObjectId (očakávaj 400)
+- [x] POST s nadbytočnými poliami (očakávaj 400 vďaka ValidationPipe)
+
+## Testovacie úlohy pre Auth (autentifikácia)
+
+ [√] POST /auth/register – úspešná registrácia (201)
+ [√] POST /auth/register – nevalidné dáta (400)
+ [√] POST /auth/login – úspešné prihlásenie (201, accessToken, refreshToken)
+ [√] POST /auth/login – zlý email/heslo (401)
+ [√] GET /auth/user/:id – s platným JWT (200, user)
+ [√] GET /auth/user/:id – bez tokenu (401)
+ [√] POST /auth/logout/:id – odhlásenie (200)
+ [√] POST /auth/refresh – platný refresh token (201, nový accessToken)
+ [√] POST /auth/refresh – neplatný refresh token (401)
+ Ochrana endpointov – bez tokenu (401), s tokenom
+
+## Ďalšie úlohy (todo)
+
+- [ ] Refaktorovať testy pre lepšiu čitateľnosť a údržbu
+- [ ] Pridať komentáre k zložitejším testom a edge-case scenárom
+- [ ] Pridať test na expirovaný access token (401)
+- [ ] Overiť rotáciu refresh tokenu po úspešnom refreshi
+- [ ] Pridať test na rate limiting/brute force login (ak bude implementované)
+- [ ] Overiť správne CORS hlavičky a bezpečnostné nastavenia API
+- [ ] Otestovať neexistujúce endpointy (očakávaj 404)
+- [ ] Pridať beforeEach/afterEach na čistenie DB medzi testami (ak bude potrebné)
+- [ ] Pridať testy pre ďalšie moduly (napr. objednávky, kategórie)
+- [ ] Pridať CI/CD pipeline na automatické

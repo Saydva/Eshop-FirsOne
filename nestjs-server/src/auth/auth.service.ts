@@ -1,4 +1,8 @@
-import { Injectable, ConflictException } from '@nestjs/common';
+import {
+  Injectable,
+  ConflictException,
+  NotFoundException,
+} from '@nestjs/common';
 import * as bcrypt from 'bcryptjs';
 import { RegisterDto } from './dto/register.dto';
 import { InjectModel } from '@nestjs/mongoose';
@@ -25,6 +29,7 @@ export class AuthService {
       name: registerDto.name,
       email: registerDto.email,
       password: hash,
+      role: registerDto.role,
     });
     const userObj = user.toObject ? user.toObject() : user;
     const { password, ...result } = userObj;
@@ -43,29 +48,93 @@ export class AuthService {
     const payload = { email: user.email, sub: user._id, name: user.name };
     const accessToken = this.jwtService.sign(payload, { expiresIn: '15m' });
     const refreshToken = this.jwtService.sign(payload, { expiresIn: '1d' });
+    user.accessToken = accessToken;
+    user.refreshToken = refreshToken;
+
+    await user.save();
+
     return {
       user: {
         email: user.email,
         name: user.name,
         id: user._id,
-        tokens: {
-          accessToken,
-          refreshToken,
-        },
+        role: user.role,
+        accessToken,
+        refreshToken,
       },
     };
   }
 
   async refresh(refreshToken: string) {
     try {
-      const payload = this.jwtService.verify(refreshToken);
-      const accessToken = this.jwtService.sign(
-        { email: payload.email, sub: payload.sub, name: payload.name },
+      // 1. Over platnosť refresh tokenu a získaj payload
+      const payload = await this.jwtService.verifyAsync(refreshToken);
+      // 2. Nájsť používateľa podľa ID a refreshTokenu v DB
+      const user = await this.userModel.findOne({
+        _id: payload.sub,
+        refreshToken,
+      });
+      if (!user) {
+        throw new ConflictException('Invalid refresh token');
+      }
+      // 3. Vygeneruj nové tokeny
+      const newAccessToken = this.jwtService.sign(
+        { email: user.email, sub: user._id, name: user.name },
         { expiresIn: '15m' },
       );
-      return { accessToken };
+      const newRefreshToken = this.jwtService.sign(
+        { email: user.email, sub: user._id, name: user.name },
+        { expiresIn: '1d' },
+      );
+      user.accessToken = newAccessToken;
+      user.refreshToken = newRefreshToken;
+      await user.save();
+      return {
+        accessToken: newAccessToken,
+        refreshToken: newRefreshToken,
+      };
     } catch (error) {
       throw new ConflictException('Invalid refresh token');
     }
+  }
+
+  async logout(userId: string) {
+    const user = await this.userModel.findById(userId);
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+    user.accessToken = undefined;
+    user.refreshToken = undefined;
+    await user.save();
+
+    return { message: 'Logged out successfully' };
+  }
+
+  async getUserById(userId: string) {
+    const user = await this.userModel.findById(userId);
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+    const { password, ...result } = user.toObject ? user.toObject() : user;
+    return result;
+  }
+
+  async updateUser(userId: string, updateData: Partial<User>) {
+    const user = await this.userModel.findByIdAndUpdate(userId, updateData, {
+      new: true,
+    });
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+    const { password, ...result } = user.toObject ? user.toObject() : user;
+    return result;
+  }
+
+  async getAllUsers() {
+    const users = await this.userModel.find({}, '-password'); // vráti všetkých okrem hesla
+    return users.map((user) => {
+      const { password, ...result } = user.toObject ? user.toObject() : user;
+      return result;
+    });
   }
 }
