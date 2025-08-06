@@ -1,6 +1,6 @@
-import ProductList from "../product/productList/ProductList";
+import ProductList from "../../components/product/productList/ProductList";
 
-const AppBody = () => {
+const HomePage = () => {
   return (
     <div className="flex flex-row flex-wrap gap-3 justify-center max-h-max">
       <ProductList />
@@ -8,4 +8,4 @@ const AppBody = () => {
   );
 };
 
-export default AppBody;
+export default HomePage;
