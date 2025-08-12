@@ -1,4 +1,4 @@
-import { createApi } from "../../../utils/api.axios";
+import { createApi } from "../../utils/api.axios";
 
 const { api } = createApi("auth");
 

@@ -1,7 +1,7 @@
 import { useState, type ReactNode } from "react";
-import { useUserStore } from "../../components/auth/user.store/useUser.store";
+import { useAuthStore } from "../store/useAuthStore";
 import { Menu } from "react-feather";
-import Logout from "../../components/auth/logout.button/Logout";
+import Logout from "../../components/auth/Logout";
 import { Link } from "react-router";
 
 type NavbarProps = {
@@ -10,7 +10,7 @@ type NavbarProps = {
 
 const Navbar = ({ children }: NavbarProps) => {
   const [open, setOpen] = useState(false);
-  const { isLoggedIn, user } = useUserStore();
+  const { isLoggedIn, user } = useAuthStore();
 
   const toggleMenu = () => {
     setOpen(!open);

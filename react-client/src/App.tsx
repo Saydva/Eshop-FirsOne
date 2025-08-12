@@ -1,21 +1,26 @@
 import { useEffect, useState } from "react";
-import { useUserStore } from "./components/auth/user.store/useUser.store";
+import { useAuthStore } from "./pages/store/useAuthStore";
 import Navbar from "./pages/navbar/Navbar";
 import ChangeThemeButton from "./pages/navbar/ChangeTheme.button";
 import AdminSidebar from "./pages/admin.sidebar/AdminSidebar";
 import { Route, Routes } from "react-router";
 import HomePage from "./pages/home/Home";
 import ShopingCart from "./pages/navbar/ShopingCart";
-import Register from "./components/auth/register.Form/Register";
-import Login from "./components/auth/login.Form/Login";
+import Register from "./components/auth/Register";
+import Login from "./components/auth/Login";
 
 function App() {
   const [index, setIndex] = useState(0);
-  const { isLoggedIn, user } = useUserStore();
+  const { isLoggedIn, user } = useAuthStore();
   const themes = ["valentine", "nord", "caramellatte", "wireframe", "business"];
 
   useEffect(() => {
-    console.log(JSON.parse(JSON.stringify(localStorage.getItem("user"))));
+    const persisted = sessionStorage.getItem("user-storage");
+    if (persisted) {
+      console.log("Persisted user-store:", JSON.parse(persisted));
+    } else {
+      console.log("No persisted user-store in sessionStorage");
+    }
   }, [isLoggedIn, user]);
 
   const handleTheme = () => {

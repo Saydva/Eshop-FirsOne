@@ -19,6 +19,7 @@ export const useInputStore = create<InputProps & InputActions>((set) => ({
   name: "",
   email: "",
   password: "",
+  role: undefined,
   setName: (name) => set(() => ({ name })),
   setEmail: (email) => set(() => ({ email })),
   setPassword: (password) => set(() => ({ password })),
@@ -26,13 +27,14 @@ export const useInputStore = create<InputProps & InputActions>((set) => ({
     set(() => ({
       name: "Test User",
       email: "test@gmail.com",
-      password: "Test123",
+      password: "Test12345",
     })),
   prefillValuesAdmin: () =>
     set(() => ({
       name: "Admin User",
       email: "admin@gmail.com",
-      password: "Admin123",
+      password: "Admin12345",
+      role: "admin",
     })),
   resetValues: () => set(() => ({ name: "", email: "", password: "" })),
 }));

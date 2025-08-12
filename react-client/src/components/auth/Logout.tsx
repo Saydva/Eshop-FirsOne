@@ -1,5 +1,5 @@
 import { LogOut } from "react-feather";
-import { Logoutcontroller } from "../userModules/user.controller";
+import { Logoutcontroller } from "./user.controller";
 
 const Logout = () => {
   const user = localStorage.getItem("user");

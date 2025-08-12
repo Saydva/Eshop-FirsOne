@@ -1,46 +1,68 @@
-import { useInputStore } from "../user.store/useInput.Store";
-import { useNavigateTo } from "../../../utils/navigate";
-import { Logincontroller } from "../userModules/user.controller";
+import { useState } from "react";
+import { useNavigateTo } from "../../utils/navigate";
+import { useInputStore } from "./useAuthInput.Store";
+import { Registercontroller } from "./user.controller";
 
-const Login = () => {
+const Register = () => {
   const {
+    name,
     email,
     password,
+    setName,
     setEmail,
     setPassword,
     resetValues,
     prefillValues,
     prefillValuesAdmin,
   } = useInputStore();
-  const navigateToHome = useNavigateTo("/");
+
+  const [admin, setAdmin] = useState("user");
+
+  const navigateToLogin = useNavigateTo("/Login");
+
   return (
     <form
       onSubmit={async (e) => {
         try {
           e.preventDefault();
-          await Logincontroller(email, password);
+          await Registercontroller(name, email, password, admin);
+          navigateToLogin();
           resetValues();
-          alert("Login successful!");
-          navigateToHome();
+          alert("Registration successful! Please log in.");
         } catch (error: any) {
+          console.log("Registration failed:", error);
           alert(
-            "Login failed: please control your credentials, or leave as a message "
+            "Registration failed: try to use other name or email, or leave as message: "
           );
         }
       }}
     >
       <div className="flex flex-col items-center justify-center  bg-base-100">
         <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
-          <legend className="fieldset-legend">Login page</legend>
+          <legend className="fieldset-legend">Register page</legend>
+          <label htmlFor="name" className="label">
+            User name
+          </label>
+          <label className="input validator">
+            <input
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              id="name"
+              type="text"
+              required
+              placeholder="name"
+              title="enter a valid name"
+            />
+          </label>
 
           <label htmlFor="email" className="label">
             Your email
           </label>
           <label className="input validator">
             <input
-              id="email"
-              onChange={(e) => setEmail(e.target.value)}
               value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              id="email"
               type="email"
               required
               placeholder="email"
@@ -53,26 +75,19 @@ const Login = () => {
           </label>
           <label className="input validator">
             <input
-              onChange={(e) => setPassword(e.target.value)}
               value={password}
+              onChange={(e) => setPassword(e.target.value)}
               required
               id="password"
               type="password"
               placeholder="Password"
-              pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
+              pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
               title="Must be more than 8 characters, including number, lowercase letter, uppercase letter"
             />
           </label>
         </fieldset>
-        <div className="flex justify-between mt-4">
-          <button type="submit" className="btn btn-primary">
-            Login
-          </button>
-          <button
-            type="button"
-            className="btn btn-secondary ml-2"
-            onClick={useNavigateTo("/Register")}
-          >
+        <div className="flex justify-center mt-4">
+          <button type="submit" className="btn btn-secondary ml-2">
             Register
           </button>
           <button
@@ -85,7 +100,10 @@ const Login = () => {
           <button
             className="btn ml-2"
             type="button"
-            onClick={() => prefillValuesAdmin()}
+            onClick={() => {
+              prefillValuesAdmin();
+              setAdmin("admin");
+            }}
           >
             Admin
           </button>
@@ -95,4 +113,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
