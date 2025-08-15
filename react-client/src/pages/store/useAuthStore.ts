@@ -1,24 +1,24 @@
-import { create } from "zustand";
-import { persist, createJSONStorage } from "zustand/middleware";
+import { create } from 'zustand'
+import { persist, createJSONStorage } from 'zustand/middleware'
 
 type UserProps = {
-  name: string;
-  id: string;
-  role: string;
-  email?: string;
-} | null;
+  name: string
+  id: string
+  role: string
+  email?: string
+} | null
 
 type UserActions = {
-  user: UserProps;
-  isLoggedIn: boolean;
-  accessToken: string | null;
-  refreshToken: string | null;
-  setUser: (user: UserProps) => void;
-  setIsLoggedIn: (isLoggedIn: boolean) => void;
-  setAccessToken: (token: string | null) => void;
-  setRefreshToken: (token: string | null) => void;
-  resetValues: () => void;
-};
+  user: UserProps
+  isLoggedIn: boolean
+  accessToken: string | null
+  refreshToken: string | null
+  setUser: (user: UserProps) => void
+  setIsLoggedIn: (isLoggedIn: boolean) => void
+  setAccessToken: (token: string | null) => void
+  setRefreshToken: (token: string | null) => void
+  resetValues: () => void
+}
 
 export const useAuthStore = create<UserActions>()(
   persist(
@@ -40,8 +40,8 @@ export const useAuthStore = create<UserActions>()(
         }),
     }),
     {
-      name: "user-storage",
+      name: 'user-storage',
       storage: createJSONStorage(() => sessionStorage),
     }
   )
-);
+)

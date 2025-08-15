@@ -28,7 +28,16 @@ TODO:
     - Pridať endpoint na refresh token
     - Chrániť endpointy pomocou AuthGuard('jwt')
 
+[ ] 16. Pridať admin sekciu
+    - Vytvoriť Admin modul, controller a service
+    - Pridať endpointy pre správu používateľov (GET/POST/PUT/DELETE)
+    - Pridať možnosť meniť role používateľov (user/admin)
+    - Chrániť admin endpointy pomocou RoleGuard alebo vlastného guardu
+    - Pridať admin sekciu do Swagger dokumentácie
+    - Pripraviť základné UI pre admina (voliteľné)
+
 testing
 Activity Log:
 
 2025-07-27: Dokončené pokrytie CRUD a chybových stavov v e2e testoch, controller správne mapuje Mongoose chyby na HTTP odpovede. Validácia vstupov je robustná a zdokumentovaná podľa best practices. Pripravené na ďalšie kroky: Swagger, autentifikácia.
+

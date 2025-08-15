@@ -1,9 +1,9 @@
-import { useNavigate } from "react-router";
+import { useNavigate } from 'react-router'
 
 export const useNavigateTo = (path: string) => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   return () => {
-    navigate(path);
-  };
-};
+    navigate(path)
+  }
+}

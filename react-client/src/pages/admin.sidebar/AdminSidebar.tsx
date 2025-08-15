@@ -1,23 +1,23 @@
 const AdminSidebar = () => {
   return (
-    <div className="drawer">
-      <input id="my-drawer" type="checkbox" className="drawer-toggle" />
-      <div className="drawer-content">
+    <div className='drawer'>
+      <input id='my-drawer' type='checkbox' className='drawer-toggle' />
+      <div className='drawer-content'>
         {/* Page content here */}
         <label
-          htmlFor="my-drawer"
-          className="btn btn-primary drawer-button my-2"
+          htmlFor='my-drawer'
+          className='btn btn-primary drawer-button my-2'
         >
           Open admin sidebar
         </label>
       </div>
-      <div className="drawer-side">
+      <div className='drawer-side'>
         <label
-          htmlFor="my-drawer"
-          aria-label="close sidebar"
-          className="drawer-overlay"
+          htmlFor='my-drawer'
+          aria-label='close sidebar'
+          className='drawer-overlay'
         ></label>
-        <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
+        <ul className='menu bg-base-200 text-base-content min-h-full w-80 p-4'>
           {/* Sidebar content here */}
           <li>
             <a>Sidebar Item 1</a>
@@ -28,7 +28,7 @@ const AdminSidebar = () => {
         </ul>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default AdminSidebar;
+export default AdminSidebar
