@@ -1,0 +1,66 @@
+## Swagger dokumentácia – kontrolný zoznam pre celú aplikáciu
+
+### Globálne
+- [ ] Pridať základný popis API (`@ApiTags`, `@ApiOperation`, `@ApiBearerAuth`)
+- [ ] Pridať globálny JWT bearer auth (`@ApiBearerAuth` v hlavnom controllery alebo AppModule)
+- [ ] Pridať základné schémy pre všetky DTO (`@ApiProperty` v DTO triedach)
+- [ ] Pridať príklady requestov a odpovedí (`example` v `@ApiProperty`)
+- [ ] Skontrolovať, že Swagger UI umožňuje zadanie JWT tokenu (Authorize)
+- [ ] Skontrolovať, že všetky endpointy majú správne popisy a príklady
+
+---
+
+### Auth sekcia
+- [ ] Register endpoint (`/auth/register`) – popis, príklad vstupu a výstupu
+- [ ] Login endpoint (`/auth/login`) – popis, príklad vstupu a výstupu
+- [ ] Refresh token endpoint (`/auth/refresh`) – popis, príklad vstupu a výstupu
+- [ ] Logout endpoint (`/auth/logout/:id`) – popis, príklad vstupu a výstupu
+
+---
+
+### User sekcia
+- [ ] Endpoint na získanie všetkých používateľov (`/auth/user/all`)
+- [ ] Endpoint na získanie detailu používateľa (`/auth/:id`)
+- [ ] Endpoint na úpravu používateľa (`/auth/:id`)
+- [ ] Endpoint na zmazanie používateľa (`/auth/:id`)
+- [ ] Endpoint na zmenu role používateľa (`/auth/:id/role`)
+- [ ] Pridať tagy a popisy ku všetkým user endpointom
+
+---
+
+### Product sekcia
+- [ ] Endpoint na vytvorenie produktu (`/product`)
+- [ ] Endpoint na získanie všetkých produktov (`/product`)
+- [ ] Endpoint na získanie detailu produktu (`/product/:id`)
+- [ ] Endpoint na úpravu produktu (`/product/:id`)
+- [ ] Endpoint na zmazanie produktu (`/product/:id`)
+- [ ] Pridať tagy a popisy ku všetkým product endpointom
+
+---
+
+### Category sekcia
+- [ ] Endpoint na vytvorenie kategórie (`/category`)
+- [ ] Endpoint na získanie všetkých kategórií (`/category`)
+- [ ] Endpoint na získanie detailu kategórie (`/category/:id`)
+- [ ] Endpoint na úpravu kategórie (`/category/:id`)
+- [ ] Endpoint na zmazanie kategórie (`/category/:id`)
+- [ ] Pridať tagy a popisy ku všetkým category endpointom
+
+---
+
+### Objednávky (Order) sekcia (ak máš)
+- [ ] Endpoint na vytvorenie objednávky
+- [ ] Endpoint na získanie všetkých objednávok
+- [ ] Endpoint na získanie detailu objednávky
+- [ ] Endpoint na úpravu objednávky
+- [ ] Endpoint na zmazanie objednávky
+- [ ] Pridať tagy a popisy ku všetkým order endpointom
+
+---
+
+### Ostatné
+- [ ] Skontrolovať, že všetky endpointy majú správne HTTP metódy a cesty
+- [ ] Skontrolovať, že všetky endpointy majú popis vstupných dát (`@ApiBody`, `@ApiParam`, `@ApiQuery`)
+- [ ] Skontrolovať, že všetky endpointy majú popis odpovedí (`@ApiResponse`)
+- [ ] Skontrolovať, že všetky endpointy majú správne tagy (`@ApiTags`)
+- [ ] Skontrolovať, že Swagger UI je prehľadný a

@@ -65,5 +65,33 @@
 - [ ] Test POST /payments – vytvorenie platby (očakávaj platbu)
 - [ ] Test GET /payments – zoznam platieb
 
+## Testovacie úlohy pre UserController
+
+- [ ] should be defined – unitTest
+- [ ] should create a user – unitTest
+- [ ] should find all users – unitTest
+- [ ] should find a user by id – unitTest
+- [ ] should update a user – unitTest
+- [ ] should delete a user – unitTest
+- [ ] should throw NotFoundException if user not found – unitTest
+
+## Testovacie úlohy pre UserService
+
+- [ ] should be defined – unitTest
+- [ ] should create a user – unitTest
+- [ ] should find all users – unitTest
+- [ ] should find a user by id – unitTest
+- [ ] should update a user – unitTest
+- [ ] should delete a user – unitTest
+- [ ] should throw NotFoundException if user not found – unitTest
+
+## Testovacie úlohy pre User (e2e)
+
+- [ ] GET /user – zoznam používateľov (admin, očakávaj pole používateľov) – e2eTest
+- [ ] GET /user/:id – detail používateľa (admin, očakávaj používateľa) – e2eTest
+- [ ] PATCH /user/:id – úprava používateľa (admin, očakávaj upravené údaje) – e2eTest
+- [ ] DELETE /user/:id – zmazanie používateľa (admin, očakávaj správu) – e2eTest
+- [ ] PATCH /user/me – úprava vlastného profilu (očakávaj zmenené údaje)
+
 ---
-**Všetky vyššie označené [x] testy
+**Všetky vyššie označené [x] testy sú úspešne prechádzajúce.**

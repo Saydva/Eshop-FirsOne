@@ -7,14 +7,14 @@ import * as bcrypt from 'bcryptjs';
 import { RegisterDto } from './dto/register.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { User } from './schema/user.schema';
+import { AuthUser } from './schema/authUser.schema';
 import { JwtService } from '@nestjs/jwt';
 import { LoginDto } from './dto/login.dto';
 
 @Injectable()
 export class AuthService {
   constructor(
-    @InjectModel(User.name) private userModel: Model<User>,
+    @InjectModel(AuthUser.name) private userModel: Model<AuthUser>,
     private readonly jwtService: JwtService,
   ) {}
 
@@ -45,7 +45,12 @@ export class AuthService {
     if (!isMatch) {
       throw new ConflictException('Invalid credentials');
     }
-    const payload = { email: user.email, sub: user._id, name: user.name };
+    const payload = {
+      email: user.email,
+      sub: user._id,
+      name: user.name,
+      role: user.role,
+    };
     const accessToken = this.jwtService.sign(payload, { expiresIn: '15m' });
     const refreshToken = this.jwtService.sign(payload, { expiresIn: '1d' });
     user.accessToken = accessToken;
@@ -119,7 +124,7 @@ export class AuthService {
     return result;
   }
 
-  async updateUser(userId: string, updateData: Partial<User>) {
+  async updateUser(userId: string, updateData: Partial<AuthUser>) {
     const user = await this.userModel.findByIdAndUpdate(userId, updateData, {
       new: true,
     });
@@ -128,13 +133,5 @@ export class AuthService {
     }
     const { password, ...result } = user.toObject ? user.toObject() : user;
     return result;
-  }
-
-  async getAllUsers() {
-    const users = await this.userModel.find({}, '-password'); // vráti všetkých okrem hesla
-    return users.map((user) => {
-      const { password, ...result } = user.toObject ? user.toObject() : user;
-      return result;
-    });
   }
 }

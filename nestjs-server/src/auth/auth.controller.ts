@@ -83,10 +83,4 @@ export class AuthController {
   async updateUser(@Request() req, @Body() updateDto: any) {
     return await this.authService.updateUser(req.user.userId, updateDto);
   }
-
-  @UseGuards(JwtAuthGuard)
-  @Get('user/all')
-  async getAllUsers() {
-    return await this.authService.getAllUsers();
-  }
 }

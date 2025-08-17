@@ -62,13 +62,33 @@ Content-Type: application/json
   "role": "admin"   
 }
 
+###
+POST http://localhost:5000/auth/register
+Content-Type: application/json
+
+{
+  "email": "testuser@gmail.com",
+  "password": "Test123",
+  "name": "Test User",
+  "role": "user"
+}
 
 ###
 POST http://localhost:5000/auth/login
 Content-Type: application/json
 
 {
-  "email": "test@gmail.com",
+  "email": "admin@gmail.com",
+  "password": "Admin12312"
+}
+
+
+###
+POST http://localhost:5000/auth/login
+Content-Type: application/json
+
+{
+  "email": "testuser@gmail.com",
   "password": "Test123"
   }
 
@@ -102,10 +122,62 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAZ
 }
 
 
+
+////// test user crud operations
+
 ###
 GET http://localhost:5000/auth/user/all
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwic3ViIjoiNjg4OWMxMGI3ZGExYWIxNDZkOGZmMGQxIiwibmFtZSI6IlVwZGF0ZWQgVGVzdCBVc2VyIiwiaWF0IjoxNzUzODYwNjA1LCJleHAiOjE3NTM4NjE1MDV9.rARP7yTEeTwJDwGRFjZUZbJpEwdbu-O2DcOanytOsrc
+
+###
+GET http://localhost:5000/auth/68a09ecf250751dfa0c3d002
+Content-Type: application/json
 
 
+###
+PATCH http://localhost:5000/auth/68a09ecf250751dfa0c3d002
+Content-Type: application/json
 
+{
+  "name": "Test User"
+}
+
+###
+DELETE http://localhost:5000/auth/68a09ecf250751dfa0c3d002
+Content-Type: application/json
+
+
+////////// test user role change
+
+###
+GET http://localhost:5000/auth/user/all
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInN1YiI6IjY4YTBiOWYzNDY1MzEyM2E2NDczOGU1NCIsIm5hbWUiOiJBZG1pbiBVc2VyIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NTU0MjUxMDMsImV4cCI6MTc1NTQyNjAwM30.ew7eCsP35dMqZcNjd10Lme1VyqAd1wM2YN1sjZEQ1Ww
+
+###
+GET http://localhost:5000/auth/68a0ba164653123a64738e57
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInN1YiI6IjY4YTBiOWYzNDY1MzEyM2E2NDczOGU1NCIsIm5hbWUiOiJBZG1pbiBVc2VyIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NTU0MjUxMDMsImV4cCI6MTc1NTQyNjAwM30.ew7eCsP35dMqZcNjd10Lme1VyqAd1wM2YN1sjZEQ1Ww
+
+###
+PATCH http://localhost:5000/auth/68a0ba164653123a64738e57
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInN1YiI6IjY4YTBiOWYzNDY1MzEyM2E2NDczOGU1NCIsIm5hbWUiOiJBZG1pbiBVc2VyIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NTU0MjUxMDMsImV4cCI6MTc1NTQyNjAwM30.ew7eCsP35dMqZcNjd10Lme1VyqAd1wM2YN1sjZEQ1Ww
+
+{
+  "name":"Test User"
+}
+
+###
+PATCH http://localhost:5000/auth/68a0ba164653123a64738e57/role
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInN1YiI6IjY4YTBiOWYzNDY1MzEyM2E2NDczOGU1NCIsIm5hbWUiOiJBZG1pbiBVc2VyIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NTU0MjUxMDMsImV4cCI6MTc1NTQyNjAwM30.ew7eCsP35dMqZcNjd10Lme1VyqAd1wM2YN1sjZEQ1Ww
+
+{
+  "role": "user"
+}
+
+###
+DELETE http://localhost:5000/auth/68a0ba164653123a64738e57
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInN1YiI6IjY4YTBiOWYzNDY1MzEyM2E2NDczOGU1NCIsIm5hbWUiOiJBZG1pbiBVc2VyIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NTU0MjUxMDMsImV4cCI6MTc1NTQyNjAwM30.ew7eCsP35dMqZcNjd10Lme1VyqAd1wM2YN1sjZEQ1Ww

@@ -3,7 +3,7 @@ import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
 import { JwtModule } from '@nestjs/jwt';
 import { MongooseModule } from '@nestjs/mongoose';
-import { User, UserSchema } from './schema/user.schema';
+import { AuthUser, AuthSchema } from './schema/authUser.schema';
 import { JwtStrategy } from './guard/jwt.strategy';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 
@@ -18,7 +18,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
         signOptions: { expiresIn: '15m' },
       }),
     }),
-    MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
+    MongooseModule.forFeature([{ name: AuthUser.name, schema: AuthSchema }]),
   ],
   controllers: [AuthController],
   providers: [AuthService, JwtStrategy],

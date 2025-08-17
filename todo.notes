@@ -29,8 +29,8 @@ TODO:
     - Chrániť endpointy pomocou AuthGuard('jwt')
 
 [ ] 16. Pridať admin sekciu
-    - Vytvoriť Admin modul, controller a service
-    - Pridať endpointy pre správu používateľov (GET/POST/PUT/DELETE)
+    [√] - Vytvoriť Admin modul, controller a service
+    [√] - Pridať endpointy pre správu používateľov (GET/POST/PUT/DELETE)
     - Pridať možnosť meniť role používateľov (user/admin)
     - Chrániť admin endpointy pomocou RoleGuard alebo vlastného guardu
     - Pridať admin sekciu do Swagger dokumentácie
