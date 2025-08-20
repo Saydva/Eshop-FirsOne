@@ -1,4 +1,4 @@
-import { createApi } from '../../utils/api.axios'
+import { createApi } from '@/../utils/api.axios'
 
 const { api } = createApi('auth')
 
@@ -24,5 +24,6 @@ export const refreshService = async (refreshToken: string) => {
 
 export const logoutService = async (userId: string) => {
   const response = await api.post(`/logout/${userId}`)
+  console.log(userId)
   return response.data
 }

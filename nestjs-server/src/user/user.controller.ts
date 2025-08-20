@@ -1,4 +1,13 @@
-import { Body, Controller, Delete, Get, Param, Patch } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  UsePipes,
+  ValidationPipe,
+} from '@nestjs/common';
 import { UserService } from './user.service';
 import { UpdateUserDto } from './dto/updateUser.dto';
 import { UseGuards } from '@nestjs/common';
@@ -6,6 +15,13 @@ import { Roles } from './guardRole/roles.decorator';
 import { RolesGuard } from './guardRole/roles.guard';
 import { AuthGuard } from '@nestjs/passport';
 
+@UsePipes(
+  new ValidationPipe({
+    whitelist: true,
+    forbidNonWhitelisted: true,
+    transform: true,
+  }),
+)
 @UseGuards(AuthGuard('jwt'), RolesGuard)
 @Roles('admin')
 @Controller('auth')

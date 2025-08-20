@@ -2,8 +2,8 @@ import { LogOut } from 'react-feather'
 import { Logoutcontroller } from './user.controller'
 
 const Logout = () => {
-  const user = localStorage.getItem('user')
-  const userId = user ? JSON.parse(user).id : null
+  const userState = sessionStorage.getItem('user-storage')
+  const userId = userState ? JSON.parse(userState).state.user.id : null
 
   return (
     <button

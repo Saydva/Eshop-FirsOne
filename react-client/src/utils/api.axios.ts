@@ -10,7 +10,8 @@ export const createApi = (route: string) => {
 
   api.interceptors.request.use(
     (config) => {
-      const token = localStorage.getItem('token')
+      const storage = sessionStorage.getItem('user-storage') || '{}'
+      const token = JSON.parse(storage)?.state?.accessToken || null
       if (token) {
         config.headers.Authorization = `Bearer ${token}`
       }

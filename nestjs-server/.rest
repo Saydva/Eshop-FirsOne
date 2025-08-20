@@ -48,6 +48,16 @@ Content-Type: application/json
   "categoryId": "Electronics"
 }
 
+###
+POst http://localhost:5000/category
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInN1YiI6IjY4YTIyOTVjNzlkNWNlZjZiNmRkZGQyNSIsIm5hbWUiOiJBZG1pbiBVc2VyIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzU1NTQ2NzA1LCJleHAiOjE3NTU1NDc2MDV9.kJRTbHSAyuhyvJdXV6HmyRwJkSIsuj0LlHy_bfMuq8g
+
+{
+  "name": "Invalid Category",
+  "description": "This category has an invalid name"
+} 
+
 
 ////// test login and register
 

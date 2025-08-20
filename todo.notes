@@ -28,16 +28,150 @@ TODO:
     - Pridať endpoint na refresh token
     - Chrániť endpointy pomocou AuthGuard('jwt')
 
-[ ] 16. Pridať admin sekciu
-    [√] - Vytvoriť Admin modul, controller a service
-    [√] - Pridať endpointy pre správu používateľov (GET/POST/PUT/DELETE)
-    - Pridať možnosť meniť role používateľov (user/admin)
-    - Chrániť admin endpointy pomocou RoleGuard alebo vlastného guardu
-    - Pridať admin sekciu do Swagger dokumentácie
-    - Pripraviť základné UI pre admina (voliteľné)
+
 
 testing
 Activity Log:
 
 2025-07-27: Dokončené pokrytie CRUD a chybových stavov v e2e testoch, controller správne mapuje Mongoose chyby na HTTP odpovede. Validácia vstupov je robustná a zdokumentovaná podľa best practices. Pripravené na ďalšie kroky: Swagger, autentifikácia.
+
+## TODO – Hotové časti aplikácie (NestJS + React)
+
+### 🟢 **Backend (NestJS)**
+-  [√] Základná štruktúra projektu (moduly, controllery, služby)
+-  [√] User schéma, model a CRUD operácie (Mongoose)
+-  [√] Auth modul: registrácia, login, JWT, refresh token, logout
+-  [√] Pridanie role do JWT a validácia role v JwtStrategy
+-  [√] RoleGuard a dekorátor @Roles – ochrana admin endpointov
+-  [√] Endpointy na správu používateľov (GET all, GET by id, PATCH, PATCH role, DELETE)
+-  [√] Validácia vstupov cez DTO a ValidationPipe
+-  [√] Swagger dokumentácia pre všetky hlavné endpointy
+-  [√] Product a Category moduly s CRUD operáciami
+-  [√] Ošetrenie chýb (409 pri registrácii, 401 pri login, 403 pri role)
+-  [√] Logout endpoint s kontrolou platného ObjectId
+
+---
+
+### 🟢 **Frontend (React)**
+-  [√] Základná štruktúra projektu (pages, components, store)
+-  [√] Persistovanie používateľa v sessionStorage cez zustand persist (`user-storage`)
+-  [√] Pripojenie a použitie useAuthStore v App.tsx
+-  [√] Dynamické zobrazenie AdminSidebar podľa roly používateľa
+-  [√] Prepínanie tém (theme) cez ChangeThemeButton
+-  [√] Navbar s košíkom (ShopingCart) a prepínačom témy
+-  [√] Routing na HomePage, Register a Login
+-  [√] Register a Login komponenty s napojením na backend
+-  [√] Debugovanie persistovaného user-store v sessionStorage (useEffect v App.tsx)
+-  [√] Ošetrenie chýb pri registrácii a login (409, 401)
+-  [√] Logout s vymazaním sessionStorage a store
+
+---
+
+
+# TODO – EShop projekt
+
+---
+
+## 1. Backend (NestJS)
+
+### ✅ Hotové
+-  [√] Inštalácia a základná konfigurácia (NestJS CLI, .env, ConfigModule)
+-  [√] Pripojenie MongoDB cez Mongoose
+-  [√] Definovanie schém a modelov (User, Product, Category)
+-  [√] CRUD operácie pre Product a Category
+-  [√] User CRUD + validácia vstupov (DTO, ValidationPipe)
+-  [√] Autentifikácia a autorizácia (JWT, Passport, AuthGuard)
+-  [√] Pridanie role do JWT a validácia role v JwtStrategy
+-  [√] RoleGuard a dekorátor @Roles – ochrana admin endpointov
+-  [√] Endpointy na správu používateľov (GET all, GET by id, PATCH, PATCH role, DELETE)
+-  [√] Ošetrenie chýb (409 pri registrácii, 401 pri login, 403 pri role)
+-  [√] Logout endpoint s kontrolou platného ObjectId
+
+### 🟡 Rozpracované / Čaká na dokončenie
+- [ ] Pridať admin sekciu do Swagger dokumentácie
+- [ ] Pridať ďalšie entity (napr. Order, Review) – voliteľné
+
+---
+
+## 2. Frontend (React)
+
+### ✅ Hotové
+-  [√] Základná štruktúra projektu (pages, components, store)
+-  [√] Persistovanie používateľa v sessionStorage cez zustand persist (`user-storage`)
+-  [√] Pripojenie a použitie useAuthStore v App.tsx
+-  [√] Dynamické zobrazenie AdminSidebar podľa roly používateľa
+-  [√] Prepínanie tém (theme) cez ChangeThemeButton
+-  [√] Navbar s košíkom (ShopingCart) a prepínačom témy
+-  [√] Routing na HomePage, Register a Login
+-  [√] Register a Login komponenty s napojením na backend
+-  [√] Debugovanie persistovaného user-store v sessionStorage (useEffect v App.tsx)
+-  [√] Ošetrenie chýb pri registrácii a login (409, 401)
+-  [√] Logout s vymazaním sessionStorage a store
+
+### 🟡 Rozpracované / Čaká na dokončenie
+- [ ] Pripraviť základné UI pre admina (voliteľné)
+- [ ] Pridať ďalšie stránky (napr. Order, Review) – voliteľné
+
+---
+
+## 3. Testovanie
+
+### ✅ Hotové
+-  [√] Pokrytie CRUD a chybových stavov v e2e testoch
+-  [√] Unit testy pre service a controller (Product, User)
+-  [√] Validácia vstupov je robustná a zdokumentovaná podľa best practices
+
+### 🟡 Rozpracované / Čaká na dokončenie
+- [ ] Pridať testy pre admin endpointy
+- [ ] Pridať testy pre frontend (React Testing Library, Cypress) – voliteľné
+
+---
+
+## 4. Dokumentácia (Swagger)
+
+### ✅ Hotové
+-  [√] Pripravený základ Swagger dokumentácie (endpointy, popisy)
+
+### 🟡 Rozpracované / Čaká na dokončenie
+- [ ] Pridať admin sekciu do Swagger dokumentácie (tagy, príklady, schémy)
+- [ ] Skontrolovať, že všetky endpointy majú popisy, príklady a správne tagy
+
+---
+
+## 5. Admin sekcia
+
+### ✅ Hotové
+-  [√] Vytvoriť Admin modul, controller a service
+-  [√] Pridať endpointy pre správu používateľov (GET/POST/PUT/DELETE)
+-  [√] Pridať možnosť meniť role používateľov (user/admin)
+-  [√] Chrániť admin endpointy pomocou RoleGuard alebo vlastného guardu
+
+### 🟡 Rozpracované / Čaká na dokončenie
+- [ ] Pridať admin sekciu do Swagger dokumentácie
+- [ ] Pripraviť základné UI pre admina (voliteľné)
+
+---
+
+## Nedokončené
+
+- [ ] Pridať admin sekciu do Swagger dokumentácie (tagy, príklady, schémy)
+- [ ] Skontrolovať, že všetky endpointy majú popisy, príklady a správne tagy v Swaggeri
+- [ ] Pripraviť základné UI pre admina (voliteľné)
+- [ ] Pridať ďalšie entity (napr. Order, Review) – voliteľné
+- [ ] Pridať testy pre admin endpointy
+- [ ] Pridať testy pre frontend (React Testing Library, Cypress) – voliteľné
+
+---
+
+## Ďalšie kroky
+
+- [ ] Pridať objednávky (Order) a recenzie (Review)
+- [ ] Pridať emailové notifikácie
+- [ ] Pridať upload obrázkov pre produkty
+- [ ] Pridať pokročilé filtre a vyhľadávanie
+- [ ] Pridať CI/CD pipeline
+- [ ] Pridať pokročilé logovanie a monitoring
+- [ ] Pridať možnosť exportu/importu dát (napr. produkty, objednávky)
+- [ ] Pridať podporu pre viacjazyčnosť (i18n)
+- [ ] Pridať responzívny dizajn a accessibility v UI
 

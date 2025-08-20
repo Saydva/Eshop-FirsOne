@@ -8,10 +8,25 @@ import {
   Param,
   Patch,
   Post,
+  UseGuards,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
 import { CategoryService } from './category.service';
 import { CreateCategoryDto } from './dto/create-category.dto';
+import { AuthGuard } from '@nestjs/passport';
+import { RolesGuard } from 'src/user/guardRole/roles.guard';
+import { Roles } from 'src/user/guardRole/roles.decorator';
 
+@UsePipes(
+  new ValidationPipe({
+    whitelist: true,
+    forbidNonWhitelisted: true,
+    transform: true,
+  }),
+)
+@UseGuards(AuthGuard('jwt'), RolesGuard)
+@Roles('admin')
 @Controller('category')
 export class CategoryController {
   constructor(private readonly categoryService: CategoryService) {}
